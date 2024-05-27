@@ -1,49 +1,30 @@
-package br.com.nova.erudio.model;
+package br.com.nova.erudio.vo.v2;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.Objects;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "person")
-public class Person implements Serializable{
+public class PersonVOV2 implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
-	@Column(name = "first_name", nullable = false, length = 80)
 	private String firstname;
-	
-	@Column(name = "last_name", nullable = false, length = 80)
 	private String lastname;
-	
-	@Column(nullable = false, length = 100)
 	private String address;
-	
-	@Column(nullable = false, length = 6) 
 	private String gender;
-	
-	
-	
-	public Person() {
+	private Date birthday;
+
+
+	public PersonVOV2() {
 		
 	}
-	
-	
-	
+
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, firstname, gender, id, lastname);
+		return Objects.hash(address, birthday, firstname, gender, id, lastname);
 	}
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -52,11 +33,12 @@ public class Person implements Serializable{
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Person other = (Person) obj;
-		return Objects.equals(address, other.address) && Objects.equals(firstname, other.firstname)
-				&& Objects.equals(gender, other.gender) && Objects.equals(id, other.id)
-				&& Objects.equals(lastname, other.lastname);
+		PersonVOV2 other = (PersonVOV2) obj;
+		return Objects.equals(address, other.address) && Objects.equals(birthday, other.birthday)
+				&& Objects.equals(firstname, other.firstname) && Objects.equals(gender, other.gender)
+				&& Objects.equals(id, other.id) && Objects.equals(lastname, other.lastname);
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -87,5 +69,14 @@ public class Person implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+	
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
 	
 }
